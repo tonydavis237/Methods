@@ -12,31 +12,46 @@ namespace Methods
         static void Main(string[] args)
         {
             // Asks user for their name
-            Console.WriteLine("Please enter your name");
+            Console.WriteLine("Please enter your name ");
 
             // Creating a string variable from the users input
             string name = Console.ReadLine();
 
-            char[] array1 = name.ToCharArray();
+            // Calling greet user method
+            greet_User(name);
+        }
 
-            for (int i = 0; i < array1.Length; i++)
+        // Method that takes the users input and greets them
+        private static void greet_User(string input)
+        {
+            // Create integer variable for a whileloop count
+            int i = 0;
+
+            // Boolean used to check if user correctly inputed information
+            Boolean check = false;
+
+            // While loop to go through the user input to check for integer
+            while (i < input.Length)
             {
-                if (array1[i] <= 9 || array1[i] >= 0)
+                // Looks at the characters in string to see if they are true
+                if (Char.IsNumber(input, i) == true)
                 {
-                    Console.WriteLine("Please input a name that fall within the correct parameters");
-                    Console.WriteLine("Press any key to exit the program and try again");
+                    Console.WriteLine("Your input is not in the parameters of a correct name");
+                    Console.WriteLine("Please press any key to exit the program and try again");
+                    i = input.Length;
+                     check = true;
+
                 }
                 else
                 {
-                    // Calling greet user method
-                    greet_User(name);
+                    i++;
                 }
             }
-        }
-        // Method that takes the users input and greets them
-        private static void greet_User (string input)
-        {
-            Console.WriteLine("Hello " + input + "!");
+            // Show greeting display if there is no valid input
+            if (check == false)
+            {
+                Console.WriteLine("Hello " + input + "!");
+            }
         }
     }
 }
