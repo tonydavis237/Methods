@@ -1,7 +1,7 @@
 ﻿/*
  * Author: Anthony Davis
  * Date: 02/06/2020
- * Description:
+ * Description: Program used to write a method asking for user to input their name and responds with a greeting message
  */
 using System;
 
@@ -18,36 +18,32 @@ namespace Methods
             string name = Console.ReadLine();
 
             // Calling greet user method
-            greet_User(name);
+            Greet_User(name);
         }
 
         // Method that takes the users input and greets them
-        private static void greet_User(string input)
+        private static void Greet_User(string input)
         {
-            // Create integer variable for a whileloop count
-            int i = 0;
-
-            // Boolean used to check if user correctly inputed information
+            
+            int count = 0;
             Boolean check = false;
-
-            // While loop to go through the user input to check for integer
-            while (i < input.Length)
+            string str = input.Replace(" ", String.Empty);
+            while (count < str.Length)
             {
                 // Looks at the characters in string to see if they are true
-                if (Char.IsNumber(input, i) == true)
+                if (Char.IsLetter(str, count) == false)
                 {
                     Console.WriteLine("Your input is not in the parameters of a correct name");
                     Console.WriteLine("Please press any key to exit the program and try again");
-                    i = input.Length;
-                     check = true;
-
+                    count = str.Length;
+                    check = true;
                 }
                 else
                 {
-                    i++;
+                    count++;
                 }
             }
-            // Show greeting display if there is no valid input
+
             if (check == false)
             {
                 Console.WriteLine("Hello " + input + "!");
